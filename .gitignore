@@ -30,3 +30,6 @@ express-backend/node_modules/
 # System files anywhere
 .DS_Store
 Thumbs.db
+
+# enviroment variables.
+*.env
