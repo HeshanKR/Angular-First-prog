@@ -1,38 +1,32 @@
-# Angular build output
-angF/dist
-angF/.angular
-angF/.angular/cache
-angF/.angular/config.json
+# Ignore node_modules in any project
+**/node_modules/
 
-# Node.js dependencies
-angF/node_modules
+# Ignore Angular build folders
+angF/dist/
+angFrontend/dist/
 
-# IDEs and editors
-angF/.vscode
-angF/.idea
+# Ignore Angular TypeScript output folders
+angF/out-tsc/
+angFrontend/out-tsc/
 
-# OS files
+# Ignore Angular cache folders
+angF/.angular/
+angFrontend/.angular/
+
+# Ignore Angular environment files if needed
+# angF/src/environments/*.ts
+# angFrontend/src/environments/*.ts
+
+# Ignore Express backend node_modules
+express-backend/node_modules/
+
+# Logs
+*.log
+
+# IDE/editor stuff anywhere
+.vscode/
+.idea/
+
+# System files anywhere
 .DS_Store
 Thumbs.db
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Env files
-angF/.env
-
-# Compiled files
-*.tsbuildinfo
-*.js
-*.js.map
-
-# Tailwind and PostCSS
-angF/tailwind.config.js
-angF/.postcssrc.json
-
-# Coverage reports
-angF/coverage
-
-

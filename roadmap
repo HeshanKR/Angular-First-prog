@@ -1,0 +1,57 @@
+Full Roadmap: Secure Login System + Role-Based Access + Google Login
+✅ You’ve already done:
+ Angular + Tailwind CSS frontend ✅
+
+ Express.js + MySQL backend ✅
+
+ Backend APIs can send data to frontend ✅
+
+🚀 Your End Goal:
+🔐 User registration + login
+
+🔑 Google login
+
+🧾 JWT-based authentication
+
+🔒 Protected routes and APIs
+
+👤 Role-based access (e.g., admin/user)
+
+☁️ Secure deployment (future-proofing)
+
+🔧 Roadmap (All Steps You’ll Complete)
+🔹 PHASE 1: Setup Secure Local Authentication
+Step	Task
+✅ 1	Set up users table with id, name, email, password, role
+✅ 2	Install backend packages (bcrypt, jsonwebtoken, express-validator, dotenv)
+✅ 3	Create /register and /login endpoints with validation and password hashing
+✅ 4	Generate and return JWT token on login
+✅ 5	Create /me route to return user info from token
+✅ 6	Create Express middleware to protect routes
+⏳ 7	Create Angular AuthService to call backend, store token, track login state
+⏳ 8	Create login and register forms in Angular
+⏳ 9	Create Angular guards to restrict protected routes
+⏳ 10	Hide UI elements (e.g., “Admin Panel”) based on role
+
+🔹 PHASE 2: Add Role-Based Access
+Step	Task
+⏳ 11	Update Express middleware to check user’s role (e.g., isAdmin)
+⏳ 12	Create admin-only endpoints (e.g., /admin/users)
+⏳ 13	Use Angular guards to block UI/pages unless role matches
+⏳ 14	Show/hide buttons/links based on role (*ngIf="role === 'admin'")
+
+🔹 PHASE 3: Add Google Login
+Step	Task
+⏳ 15	Set up a Google developer account + get OAuth 2.0 credentials
+⏳ 16	Add a new backend route: GET /auth/google + callback using passport-google-oauth20
+⏳ 17	Use Passport.js to verify Google token and create/fetch user in DB
+⏳ 18	Return a JWT to frontend after successful Google login
+⏳ 19	In Angular, add a “Sign in with Google” button (can open popup or redirect)
+⏳ 20	Store the JWT and log the user in just like local login
+
+🔹 PHASE 4: Security and Deployment (optional)
+Step	Task
+⏳ 21	Store JWT and .env secrets securely
+⏳ 22	Enable HTTPS for production
+⏳ 23	Add rate limiting or CAPTCHA to prevent abuse
+⏳ 24	Host backend (e.g., on Render, Railway) and frontend (e.g., Netlify, Vercel)

@@ -1,25 +1,10 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from './services/user.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, CommonModule], // <== Add CommonModule here
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrls: ['./app.css'],
+  styleUrl: './app.css',
 })
-export class App implements OnInit {
-  protected readonly title = signal('angFrontend');
-  users = signal<any[]>([]);
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit() {
-    this.userService.getUsers().subscribe({
-      next: (data) => this.users.set(Array.isArray(data) ? data : []),
-      error: (err) => console.error(err),
-    });
-  }
-}
+export class App {}
