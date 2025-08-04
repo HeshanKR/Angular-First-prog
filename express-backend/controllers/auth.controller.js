@@ -82,30 +82,14 @@ const tokenBlacklist = new Set();
 
 const logoutUser = (req, res) => {
   const token = req.cookies.token;
-  // const refreshToken = req.cookies.refreshToken;
-
   if (token) {
     tokenBlacklist.add(token);
   }
-
-  // Optionally: if you're storing refresh tokens in memory/db, blacklist it too
-  // if (refreshToken) {
-  //   refreshTokenBlacklist.add(refreshToken); // implement this if needed
-  // }
-
-  // Clear both access and refresh token cookies
   res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
   });
-
-  // res.clearCookie("refreshToken", {
-  //   httpOnly: true,
-  //   secure: process.env.NODE_ENV === "production",
-  //   sameSite: "lax",
-  // });
-  // res.clearCookie("token");
   res.json({ message: "Logged out successfully" });
 };
 
