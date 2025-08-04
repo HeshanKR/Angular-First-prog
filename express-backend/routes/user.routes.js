@@ -1,6 +1,11 @@
 //file: user.routes.js
 const express = require("express");
-const { authenticateToken } = require("../middlewares/authMiddleware");
+const {
+  authenticateToken,
+  authorizeRoles,
+} = require("../middlewares/authMiddleware");
+
+const { updateUserRole } = require("../controllers/user.controller");
 
 const router = express.Router();
 
@@ -13,5 +18,13 @@ router.get("/me", authenticateToken, (req, res) => {
     role: req.user.role,
   });
 });
+
+// PATCH /:id/role - Admin only
+router.patch(
+  "/:id/role",
+  authenticateToken,
+  authorizeRoles("admin"),
+  updateUserRole
+);
 
 module.exports = router;
