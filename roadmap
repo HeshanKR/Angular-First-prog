@@ -28,17 +28,17 @@ Step	Task
 ✅ 4	Generate and return JWT token on login
 ✅ 5	Create /me route to return user info from token
 ✅ 6	Create Express middleware to protect routes
-⏳ 7	Create Angular AuthService to call backend, store token, track login state
-⏳ 8	Create login and register forms in Angular
-⏳ 9	Create Angular guards to restrict protected routes
-⏳ 10	Hide UI elements (e.g., “Admin Panel”) based on role
+✅ 7	Create Angular AuthService to call backend, store token, track login state
+✅ 8	Create login and register forms in Angular
+✅ 9	Create Angular guards to restrict protected routes
+✅ 10	Hide UI elements (e.g., “Admin Panel”) based on role
 
 🔹 PHASE 2: Add Role-Based Access
 Step	Task
-⏳ 11	Update Express middleware to check user’s role (e.g., isAdmin)
-⏳ 12	Create admin-only endpoints (e.g., /admin/users)
-⏳ 13	Use Angular guards to block UI/pages unless role matches
-⏳ 14	Show/hide buttons/links based on role (*ngIf="role === 'admin'")
+✅ 11	Update Express middleware to check user’s role (e.g., isAdmin)
+✅ 12	Create admin-only endpoints (e.g., /admin/users)
+✅ 13	Use Angular guards to block UI/pages unless role matches
+✅ 14	Show/hide buttons/links based on role (*ngIf="role === 'admin'")
 
 🔹 PHASE 3: Add Google Login
 Step	Task
