@@ -1,16 +1,22 @@
 //file: authMiddleware.js
 const jwt = require("jsonwebtoken");
+const { isTokenBlacklisted } = require("../controllers/auth.controller");
 
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1]; // Bearer TOKEN
+  const token = req.cookies?.token;
 
-  if (!token) return res.status(401).json({ message: "Access token missing" });
+  if (!token) {
+    return res.status(401).json({ message: "Access token missing" });
+  }
+
+  if (isTokenBlacklisted(token)) {
+    return res.status(403).json({ message: "Token is blacklisted" });
+  }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ message: "Invalid token" });
 
-    req.user = user; // Attach user info to request object
+    req.user = user;
     next();
   });
 };

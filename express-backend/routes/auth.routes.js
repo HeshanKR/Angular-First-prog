@@ -1,6 +1,10 @@
 //file: auth.routes.js
 const express = require("express");
-const { registerUser, loginUser } = require("../controllers/auth.controller");
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+} = require("../controllers/auth.controller");
 const { body } = require("express-validator");
 
 const router = express.Router();
@@ -27,5 +31,8 @@ router.post(
   ],
   loginUser
 );
+
+// POST /logout
+router.post("/logout", logoutUser);
 
 module.exports = router;

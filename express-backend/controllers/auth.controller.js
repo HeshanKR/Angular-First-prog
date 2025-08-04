@@ -61,14 +61,59 @@ const loginUser = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token });
+    // res.json({ token });
+    const ONE_HOUR = 1000 * 60 * 60;
+
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // true in production
+        sameSite: "lax",
+        maxAge: ONE_HOUR,
+      })
+      .json({ message: "Login successful" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };
 
+const tokenBlacklist = new Set();
+
+const logoutUser = (req, res) => {
+  const token = req.cookies.token;
+  // const refreshToken = req.cookies.refreshToken;
+
+  if (token) {
+    tokenBlacklist.add(token);
+  }
+
+  // Optionally: if you're storing refresh tokens in memory/db, blacklist it too
+  // if (refreshToken) {
+  //   refreshTokenBlacklist.add(refreshToken); // implement this if needed
+  // }
+
+  // Clear both access and refresh token cookies
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  });
+
+  // res.clearCookie("refreshToken", {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV === "production",
+  //   sameSite: "lax",
+  // });
+  // res.clearCookie("token");
+  res.json({ message: "Logged out successfully" });
+};
+
+const isTokenBlacklisted = (token) => tokenBlacklist.has(token);
+
 module.exports = {
   registerUser,
   loginUser,
+  logoutUser,
+  isTokenBlacklisted,
 };

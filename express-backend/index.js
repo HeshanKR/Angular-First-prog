@@ -1,7 +1,8 @@
-//file: index.jsno
+//file: index.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 const { ensureUsersTableExists } = require("./db/init");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
@@ -12,8 +13,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:4200", // frontend URL here
+  credentials: true, // allow cookies to be sent
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 
 // Ensure the users table exists before starting the server
 ensureUsersTableExists()
