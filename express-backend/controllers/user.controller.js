@@ -1,3 +1,4 @@
+//file: user.controller.js
 const db = require("../db/db");
 
 const updateUserRole = async (req, res) => {
