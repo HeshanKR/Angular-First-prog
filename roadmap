@@ -55,3 +55,63 @@ Step	Task
 ⏳ 22	Enable HTTPS for production
 ⏳ 23	Add rate limiting or CAPTCHA to prevent abuse
 ⏳ 24	Host backend (e.g., on Render, Railway) and frontend (e.g., Netlify, Vercel)
+
+
+Google Auth Setup:
+
+Perfect! You’ve done an excellent job getting through Phases 1 and 2. Now let's move on to **Phase 3: Add Google Login**.
+
+---
+
+### 🔹 Step 15: Set up a Google Developer Account + Get OAuth 2.0 Credentials
+
+#### ✅ What You'll Do:
+
+You'll create a Google project and obtain the credentials needed to allow users to log in with their Google accounts.
+
+#### ✅ Step-by-Step:
+
+1. **Go to the Google Developer Console:**
+   [https://console.cloud.google.com/](https://console.cloud.google.com/)
+
+2. **Create a New Project:**
+
+   * Click the project dropdown (top left), then “New Project”.
+   * Give it a name like `MahapolaAuthApp`.
+
+3. **Enable OAuth Consent Screen:**
+
+   * In the left sidebar, go to “OAuth consent screen”.
+   * Choose “External” (for public users) → Click “Create”.
+   * Fill in the required fields (App name, User support email).
+   * Add yourself as a test user (just your email).
+   * Click “Save and Continue” until done.
+
+4. **Enable OAuth 2.0 API:**
+
+   * Go to “APIs & Services” → “Library”.
+   * Search for “Google Identity Services” or “Google+ API” and enable it.
+
+5. **Create OAuth 2.0 Client ID:**
+
+   * Go to “Credentials” → “Create Credentials” → “OAuth Client ID”.
+   * Choose “Web Application”.
+   * Set a name like `AngularAuthClient`.
+
+   Under “Authorized JavaScript origins” add:
+
+   ```
+   http://localhost:4200
+   ```
+
+   Under “Authorized redirect URIs” add:
+
+   ```
+   http://localhost:3000/api/auth/google/callback
+   ```
+
+6. **Copy the Client ID and Client Secret** — we’ll need them in Step 16.
+
+---
+
+Let me know when this step is done and I’ll walk you through configuring your backend (`passport-google-oauth20`) in Step 16.
