@@ -1,20 +1,22 @@
 // file: google-auth.routes.js
-
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const { generalLimiter } = require("../middlewares/rateLimiter");
 
 const router = express.Router();
 
 // 1️⃣ Redirect user to Google login
 router.get(
   "/google",
+  generalLimiter,
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 // 2️⃣ Handle callback from Google
 router.get(
   "/google/callback",
+  generalLimiter,
   passport.authenticate("google", {
     session: false,
     failureRedirect: "/login", // your frontend login route

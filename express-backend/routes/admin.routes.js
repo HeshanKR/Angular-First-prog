@@ -4,11 +4,13 @@ const {
   authenticateToken,
   authorizeRoles,
 } = require("../middlewares/authMiddleware");
+const { generalLimiter } = require("../middlewares/rateLimiter");
 
 const router = express.Router();
 
 router.get(
   "/dashboard",
+  generalLimiter,
   authenticateToken,
   authorizeRoles("admin"),
   (req, res) => {

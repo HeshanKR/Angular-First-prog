@@ -42,12 +42,15 @@ Step	Task
 
 🔹 PHASE 3: Add Google Login
 Step	Task
-⏳ 15	Set up a Google developer account + get OAuth 2.0 credentials
-⏳ 16	Add a new backend route: GET /auth/google + callback using passport-google-oauth20
-⏳ 17	Use Passport.js to verify Google token and create/fetch user in DB
-⏳ 18	Return a JWT to frontend after successful Google login
-⏳ 19	In Angular, add a “Sign in with Google” button (can open popup or redirect)
-⏳ 20	Store the JWT and log the user in just like local login
+✅ 15	Set up a Google developer account + get OAuth 2.0 credentials
+✅ 16	Add a new backend route: GET /auth/google + callback using passport-google-oauth20
+✅ 17	Use Passport.js to verify Google token and create/fetch user in DB
+✅ 18	Return a JWT to frontend after successful Google login
+✅ 19	In Angular, add a “Sign in with Google” button (can open popup or redirect)
+✅ 20	Store the JWT and log the user in just like local login
+
+✅ 21 rate limiting middleware to prevent abuse and validator to validate body data sent to the backend.
+✅ 22 Add Redis caching to store user sessions.
 
 🔹 PHASE 4: Security and Deployment (optional)
 Step	Task
