@@ -1,3 +1,4 @@
+// file: angFrontend/src/app/google-login/google-login.ts
 import { Component } from '@angular/core';
 
 @Component({

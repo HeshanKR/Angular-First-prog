@@ -20,22 +20,6 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  // onSubmit() {
-  //   this.authService
-  //     .login({ email: this.email, password: this.password })
-  //     .subscribe({
-  //       next: (res) => {
-  //         this.authService.handleLogin(res.token);
-  //         this.authService
-  //           .fetchUser()
-  //           .subscribe((user) => this.authService.user.set(user));
-  //         this.router.navigate(['/dashboard']); // redirect after login
-  //       },
-  //       error: (err) => {
-  //         this.error = err.error?.message || 'Login failed';
-  //       },
-  //     });
-  // }
   onSubmit() {
     this.authService
       .login({ email: this.email, password: this.password })
