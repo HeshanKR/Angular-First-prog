@@ -1,10 +1,12 @@
+My application is a angular frontend and express js + mysql backend. I want to create a application that lets user register using custom(name+ email+password) or google login, and login using custom account or google account. Following the roadmap you gave me to create this applcation before I deleted your memories to get more space. I was able to accomplish the following:
+
 Full Roadmap: Secure Login System + Role-Based Access + Google Login
 ✅ You’ve already done:
- Angular + Tailwind CSS frontend ✅
+Angular + Tailwind CSS frontend ✅
 
- Express.js + MySQL backend ✅
+Express.js + MySQL backend ✅
 
- Backend APIs can send data to frontend ✅
+Backend APIs can send data to frontend ✅
 
 🚀 Your End Goal:
 🔐 User registration + login
@@ -21,46 +23,112 @@ Full Roadmap: Secure Login System + Role-Based Access + Google Login
 
 🔧 Roadmap (All Steps You’ll Complete)
 🔹 PHASE 1: Setup Secure Local Authentication
-Step	Task
-✅ 1	Set up users table with id, name, email, password, role
-✅ 2	Install backend packages (bcrypt, jsonwebtoken, express-validator, dotenv)
-✅ 3	Create /register and /login endpoints with validation and password hashing
-✅ 4	Generate and return JWT token on login
-✅ 5	Create /me route to return user info from token
-✅ 6	Create Express middleware to protect routes
-✅ 7	Create Angular AuthService to call backend, store token, track login state
-✅ 8	Create login and register forms in Angular
-✅ 9	Create Angular guards to restrict protected routes
-✅ 10	Hide UI elements (e.g., “Admin Panel”) based on role
+Step Task
+✅ 1 Set up users table with id, name, email, password, role
+✅ 2 Install backend packages (bcrypt, jsonwebtoken, express-validator, dotenv)
+✅ 3 Create /register and /login endpoints with validation and password hashing
+✅ 4 Generate and return JWT token on login (using cookies to store token, also we are not attaching it in request headers)
+✅ 5 Create /me route to return user info from token
+✅ 6 Create Express middleware to protect routes
+✅ 7 Create Angular AuthService to call backend, store token, track login state
+✅ 8 Create login and register forms in Angular
+✅ 9 Create Angular guards to restrict protected routes
+✅ 10 Hide UI elements (e.g., “Admin Panel”) based on role
 
 🔹 PHASE 2: Add Role-Based Access
-Step	Task
-✅ 11	Update Express middleware to check user’s role (e.g., isAdmin)
-✅ 12	Create admin-only endpoints (e.g., /admin/users)
-✅ 13	Use Angular guards to block UI/pages unless role matches
-✅ 14	Show/hide buttons/links based on role (*ngIf="role === 'admin'")
+Step Task
+✅ 11 Update Express middleware to check user’s role (e.g., isAdmin)
+✅ 12 Create admin-only endpoints (e.g., /admin/users)
+✅ 13 Use Angular guards to block UI/pages unless role matches
+✅ 14 Show/hide buttons/links based on role (\*ngIf="role === 'admin'")
 
 🔹 PHASE 3: Add Google Login
-Step	Task
-✅ 15	Set up a Google developer account + get OAuth 2.0 credentials
-✅ 16	Add a new backend route: GET /auth/google + callback using passport-google-oauth20
-✅ 17	Use Passport.js to verify Google token and create/fetch user in DB
-✅ 18	Return a JWT to frontend after successful Google login
-✅ 19	In Angular, add a “Sign in with Google” button (can open popup or redirect)
-✅ 20	Store the JWT and log the user in just like local login
+Step Task
+✅ 15 Set up a Google developer account + get OAuth 2.0 credentials
+✅ 16 Add a new backend route: GET /auth/google + callback using passport-google-oauth20
+✅ 17 Use Passport.js to verify Google token and create/fetch user in DB
+✅ 18 Return a JWT to frontend after successful Google login
+✅ 19 In Angular, add a “Sign in with Google” button (can open popup or redirect)
+✅ 20 Store the JWT and log the user in just like local login
 
 🔹 PHASE 4: Add Security
-Step	Task
+Step Task
 ✅ 21 rate limiting middleware to prevent abuse and validator to validate body data sent to the backend.
 ✅ 22 Add Redis caching to store user sessions.
 
 🔹 PHASE 4: Security and Deployment (optional)
-Step	Task
-⏳ 21	Store JWT and .env secrets securely
-⏳ 22	Enable HTTPS for production
-⏳ 23	Add rate limiting or CAPTCHA to prevent abuse
-⏳ 24	Host backend (e.g., on Render, Railway) and frontend (e.g., Netlify, Vercel)
+Step Task
+⏳ 21 Store JWT and .env secrets securely
+⏳ 22 Enable HTTPS for production
+⏳ 23 Add rate limiting or CAPTCHA to prevent abuse
+⏳ 24 Host backend (e.g., on Render, Railway) and frontend (e.g., Netlify, Vercel)
 
+Below is folder and file structure of my angular frontend.
+
+src/
+├── index.html  
+├── main.ts  
+├── style.css  
+└── app/
+--├── app.ts  
+--├── app.routes.ts  
+--├── app.config.ts  
+--├── app.html  
+--├── app.css  
+--├── app.spec.ts
+--├── auth/
+--├──admin-guard.ts
+--├──user-guard.ts
+├──google-login/
+--├──google-login.html
+--├──google-login.ts
+├──services/
+--├──auth.service.ts
+├──pages/
+--├──admin/
+----├──role-editor/
+------├──role-editor.css
+------├──role-editor.html
+------├──role-editor.ts
+--├──dashboard/
+----├──dashboard.component.css
+----├──dashboard.component.ts
+----├──dashboard.component.html
+--├──home/
+----├──home.css
+----├──home.html
+----├──home.ts
+--├──login/
+----├──login.component.css
+----├──login.component.html
+----├──login.component.ts
+--├──register/
+----├──register.component.ts
+----├──register.component.css
+----├──register.component.html
+
+Below is my Express backend file and folder structure.
+
+express-backend/
+├──config/
+--├──passport-google.js
+--├──redisClient.js
+├──controllers/
+--├──auth.controller.js
+--├──user.controller.js
+├──db/
+--├──db.js
+--├──init.js
+├──middlewares/
+--├──authMiddleware.js
+--├──rateLimiter.js
+├──routes/
+--├──admin.routes.js
+--├──auth.routes.js
+--├──google-auth.routes.js
+--├──user.routes.js
+├──index.js
+├──.env
 
 Google Auth Setup:
 
@@ -81,27 +149,27 @@ You'll create a Google project and obtain the credentials needed to allow users 
 
 2. **Create a New Project:**
 
-   * Click the project dropdown (top left), then “New Project”.
-   * Give it a name like `MahapolaAuthApp`.
+   - Click the project dropdown (top left), then “New Project”.
+   - Give it a name like `MahapolaAuthApp`.
 
 3. **Enable OAuth Consent Screen:**
 
-   * In the left sidebar, go to “OAuth consent screen”.
-   * Choose “External” (for public users) → Click “Create”.
-   * Fill in the required fields (App name, User support email).
-   * Add yourself as a test user (just your email).
-   * Click “Save and Continue” until done.
+   - In the left sidebar, go to “OAuth consent screen”.
+   - Choose “External” (for public users) → Click “Create”.
+   - Fill in the required fields (App name, User support email).
+   - Add yourself as a test user (just your email).
+   - Click “Save and Continue” until done.
 
 4. **Enable OAuth 2.0 API:**
 
-   * Go to “APIs & Services” → “Library”.
-   * Search for “Google Identity Services” or “Google+ API” and enable it.
+   - Go to “APIs & Services” → “Library”.
+   - Search for “Google Identity Services” or “Google+ API” and enable it.
 
 5. **Create OAuth 2.0 Client ID:**
 
-   * Go to “Credentials” → “Create Credentials” → “OAuth Client ID”.
-   * Choose “Web Application”.
-   * Set a name like `AngularAuthClient`.
+   - Go to “Credentials” → “Create Credentials” → “OAuth Client ID”.
+   - Choose “Web Application”.
+   - Set a name like `AngularAuthClient`.
 
    Under “Authorized JavaScript origins” add:
 
@@ -117,6 +185,85 @@ You'll create a Google project and obtain the credentials needed to allow users 
 
 6. **Copy the Client ID and Client Secret** — we’ll need them in Step 16.
 
----
-
 Let me know when this step is done and I’ll walk you through configuring your backend (`passport-google-oauth20`) in Step 16.
+
+Given your app’s current state (Express + MySQL + Angular, JWT in **HTTP-only cookies**, no refresh tokens yet), I’d tackle those threats in this **priority order** so each step builds on the last:
+
+1️⃣ CSRF(Cross-Site Request Forgery)
+
+Why first? You’re storing JWTs in cookies, which are automatically sent by the browser — this makes CSRF one of the most likely attacks on your app right now.
+
+Mitigation:
+
+- Implement a CSRF token system (`double-submit` or `synchronizer token pattern`).
+- Or set `SameSite=Strict` (or `Lax`) on cookies to reduce cross-site requests.
+
+2️⃣ XSS Token Theft(Cross-Site Scripting)
+
+Why second? Even though your JWT cookie is HTTP-only (good), XSS can still inject malicious scripts that make unauthorized API calls in the user’s session.
+
+Mitigation:
+
+- Sanitize all user input.
+- Use a CSP (Content Security Policy) to block inline scripts.
+- Escape all dynamic HTML in Angular templates (Angular helps by default).
+
+3️⃣ Session Hijacking
+
+Why now? Once CSRF & XSS are locked down, you still need to protect against attackers stealing or guessing session identifiers (cookies or tokens).
+
+Mitigation:
+
+- Use `Secure`, `HttpOnly`, `SameSite` on cookies.
+- Rotate access tokens periodically.
+- Invalidate sessions on logout or suspicious activity.
+
+4️⃣ Add Refresh Token Logic + Protect Against Stolen Refresh Token Abuse
+
+Why here? Your app currently has no refresh tokens — adding them allows short-lived access tokens, which reduces impact of token theft.
+
+Mitigation:
+
+- Store refresh tokens securely in DB with IP/device binding.
+- Rotate refresh tokens on every use (so stolen ones can’t be reused).
+- Add a server-side revocation list.
+
+5️⃣ Privilege Escalation
+
+Why later? It’s less likely than token theft in your current setup, but critical for long-term security.
+
+Mitigation:
+
+- Enforce role-based access on _every_ backend route.
+- Avoid relying solely on client-side role checks.
+- Validate that role changes can only be made by authorized users.
+
+6️⃣ OAuth Token Forgery
+
+Why next? You’re using Google OAuth — a forged token could let an attacker impersonate a user.
+Mitigation:
+
+- Always validate Google ID tokens with Google’s API or their public keys.
+- Check `aud` (client ID), `iss` (issuer), and token expiry.
+
+7️⃣ MITM Attacks(Man-in-the-Middle)
+
+Why last here? This is mostly about deployment/config — important, but your dev environment won’t benefit much until hosting.
+
+Mitigation:
+
+- Always use HTTPS in production.
+- Set `Strict-Transport-Security` header.
+- Avoid exposing tokens in query strings.
+
+📌 Final Recommended Order for Your Project
+
+1. CSRF protection (critical since JWT in cookies)
+2. XSS hardening (block malicious script injection)
+3. Session hijacking defenses (cookie settings, rotation)
+4. Add refresh token system & abuse protection
+5. Privilege escalation prevention (RBAC enforcement)
+6. OAuth token forgery protection
+7. MITM prevention (HTTPS, HSTS, secure deployment)
+
+If you want, I can make you a security upgrade plan where each step is small, testable, and matches your codebase so you don’t break anything mid-way. That way you can build protection one layer at a time instead of a big risky change.
