@@ -65,7 +65,9 @@ src/
     ├── app.config.ts        
     ├── app.html             
     ├── app.css              
-    ├── app.spec.ts 
+    ├── app.spec.ts
+    |--interceptors/
+          |--csrf.interceptors.ts 
     |--auth/
           |--admin-guard.ts
           |--user-guard.ts
@@ -113,6 +115,7 @@ express-backend/
   |--middlewares/
       |--authMiddleware.js
       |--rateLimiter.js
+      |--csrf.js
   |--routes/
       |--admin.routes.js
       |--auth.routes.js
