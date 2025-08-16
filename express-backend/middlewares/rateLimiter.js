@@ -13,7 +13,7 @@ const generalLimiter = rateLimit({
 // You can create specific limiters, for example, on login to prevent brute force
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 login requests per windowMs
+  max: 30, // limit each IP to 5 login requests per windowMs
   message:
     "Too many login attempts from this IP, please try again after 15 minutes.",
   standardHeaders: true,
