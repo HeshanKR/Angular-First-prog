@@ -66,73 +66,72 @@ Step Task
 Below is folder and file structure of my angular frontend.
 
 src/
-├── index.html                
-├── main.ts                  
-├── style.css                
+├── index.html  
+├── main.ts  
+├── style.css  
 └── app/
-    ├── app.ts               
-    ├── app.routes.ts        
-    ├── app.config.ts        
-    ├── app.html             
-    ├── app.css              
-    ├── app.spec.ts
-    |--interceptors/
-          |--csrf.interceptors.ts 
-    |--auth/
-          |--admin-guard.ts
-          |--user-guard.ts
-    |--google-login/
-          |--google-login.html
-          |--google-login.ts
-    |--services/
-          |--auth.service.ts
-    |--pages/
-          |--admin/
-                |--role-editor/
-                        |--role-editor.css
-                        |--role-editor.html
-                        |--role-editor.ts
-          |--dashboard/
-                  |--dashboard.component.css
-                  |--dashboard.component.ts
-                  |--dashboard.component.html
-          |--home/
-                |--home.css
-                |--home.html
-                |--home.ts
-          |--login/
-                |--login.component.css
-                |--login.component.html
-                |--login.component.ts
-          |--register/
-                |--register.component.ts
-                |--register.component.css
-                |--register.component.html         
-
+├── app.ts  
+ ├── app.routes.ts  
+ ├── app.config.ts  
+ ├── app.html  
+ ├── app.css  
+ ├── app.spec.ts
+|--interceptors/
+|--csrf.interceptors.ts
+|--auth/
+|--admin-guard.ts
+|--user-guard.ts
+|--google-login/
+|--google-login.html
+|--google-login.ts
+|--services/
+|--auth.service.ts
+|--pages/
+|--admin/
+|--role-editor/
+|--role-editor.css
+|--role-editor.html
+|--role-editor.ts
+|--dashboard/
+|--dashboard.component.css
+|--dashboard.component.ts
+|--dashboard.component.html
+|--home/
+|--home.css
+|--home.html
+|--home.ts
+|--login/
+|--login.component.css
+|--login.component.html
+|--login.component.ts
+|--register/
+|--register.component.ts
+|--register.component.css
+|--register.component.html
 
 Below is my Express backend file and folder structure.
 
 express-backend/
-  |--config/
-      |--passport-google.js
-      |--redisClient.js
-  |--controllers/
-      |--auth.controller.js
-      |--user.controller.js
-  |--db/
-      |--db.js
-      |--init.js
-  |--middlewares/
-      |--authMiddleware.js
-      |--rateLimiter.js
-      |--csrf.js
-  |--routes/
-      |--admin.routes.js
-      |--auth.routes.js
-      |--google-auth.routes.js
-      |--user.routes.js
-  |--index.js
-  |--.env
+|--config/
+|--passport-google.js
+|--redisClient.js
+|--controllers/
+|--auth.controller.js
+|--user.controller.js
+|--db/
+|--db.js
+|--init.js
+|--middlewares/
+|--authMiddleware.js
+|--rateLimiter.js
+|--csrf.js
+|--routes/
+|--admin.routes.js
+|--auth.routes.js
+|--google-auth.routes.js
+|--user.routes.js
+|--index.js
+|--.env
 
 Google Auth Setup:
 
@@ -263,7 +262,7 @@ Mitigation:
 📌 Final Recommended Order for Your Project
 
 1. CSRF protection (critical since JWT in cookies)✅
-2. XSS hardening (block malicious script injection)
+2. XSS hardening (block malicious script injection) + CSP ✅
 3. Session hijacking defenses (cookie settings, rotation)
 4. Add refresh token system & abuse protection
 5. Privilege escalation prevention (RBAC enforcement)✅

@@ -1,8 +1,10 @@
+//file: index.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const helmet = require("helmet");
 
 const { ensureUsersTableExists } = require("./db/init");
 const { connectRedis } = require("./config/redisClient");
@@ -32,6 +34,29 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // --- Core middlewares ---
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://accounts.google.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https://lh3.googleusercontent.com"],
+        connectSrc: [
+          "'self'",
+          process.env.FRONTEND_ORIGIN || "http://localhost:4200",
+        ],
+        frameSrc: ["'self'", "https://accounts.google.com"], // needed for Google login popup
+        objectSrc: ["'none'"], // forbid Flash, etc.
+        upgradeInsecureRequests: [], // auto-upgrade http→https in production
+      },
+    },
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());

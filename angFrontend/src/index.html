@@ -1,13 +1,27 @@
-<!doctype html>
+<!--file: index.html-->
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AngFrontend</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>AngFrontend</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://accounts.google.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self' data: https://lh3.googleusercontent.com;
+  connect-src 'self' http://localhost:3000 http://localhost:4200;
+  frame-src 'self' https://accounts.google.com;
+  object-src 'none';
+  upgrade-insecure-requests;"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

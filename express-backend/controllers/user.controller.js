@@ -1,9 +1,10 @@
 //file: user.controller.js
 const db = require("../db/db");
+const xss = require("xss");
 
 const updateUserRole = async (req, res) => {
-  const userId = req.params.id;
-  const { role } = req.body;
+  const userId = xss(req.params.id);
+  const role = xss(req.body.role);
 
   if (!["admin", "user"].includes(role)) {
     return res.status(400).json({ message: "Invalid role" });

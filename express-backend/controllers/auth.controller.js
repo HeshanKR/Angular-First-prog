@@ -2,6 +2,8 @@
 const db = require("../db/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const xss = require("xss");
+
 const { validationResult } = require("express-validator");
 
 const registerUser = async (req, res) => {
@@ -9,7 +11,10 @@ const registerUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { name, email, password } = req.body;
+  // sanitize inputs
+  const name = xss(req.body.name);
+  const email = xss(req.body.email);
+  const password = req.body.password; // don't sanitize password, hashing will handle it
 
   try {
     // check if email already exists
@@ -41,7 +46,8 @@ const loginUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { email, password } = req.body;
+  const email = xss(req.body.email);
+  const password = req.body.password;
 
   try {
     const [users] = await db.query("SELECT * FROM users WHERE email = ?", [
@@ -61,7 +67,6 @@ const loginUser = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    // res.json({ token });
     const ONE_HOUR = 1000 * 60 * 60;
 
     res
