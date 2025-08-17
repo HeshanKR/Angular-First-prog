@@ -1,13 +1,12 @@
-// file: admin-guard.ts
+// file: angFrontend/src/app/auth/admin-guard.ts
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // adjust path as needed
+import { AuthService } from '../services/auth.service';
 
 export const adminGuard: CanActivateFn = () => {
-  const auth = inject(AuthService);
+  const authService = inject(AuthService);
   const router = inject(Router);
-
-  const user = auth.user(); // using signal
+  const user = authService.user(); // signal
 
   if (user && user.role === 'admin') {
     return true;

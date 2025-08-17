@@ -6,7 +6,10 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const helmet = require("helmet");
 
-const { ensureUsersTableExists } = require("./db/init");
+const {
+  ensureUsersTableExists,
+  ensureRefreshTokensTableExists,
+} = require("./db/init");
 const { connectRedis } = require("./config/redisClient");
 require("./config/passport-google");
 
@@ -77,6 +80,7 @@ app.use("/api/admin", adminRoutes);
 
 // --- Start server ---
 ensureUsersTableExists()
+  .then(() => ensureRefreshTokensTableExists())
   .then(() => {
     console.log("Database ready.");
     return connectRedis();

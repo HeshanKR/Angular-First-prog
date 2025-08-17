@@ -21,6 +21,28 @@ async function ensureUsersTableExists() {
   }
 }
 
+async function ensureRefreshTokensTableExists() {
+  const createTableSQL = `
+    CREATE TABLE IF NOT EXISTS refresh_tokens (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      token VARCHAR(500) NOT NULL,
+      ip_address VARCHAR(45),
+      user_agent VARCHAR(255),
+      expires_at DATETIME NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+  `;
+  try {
+    await db.query(createTableSQL);
+    console.log("✅ 'refresh_tokens' table verified or created.");
+  } catch (err) {
+    console.error("❌ Failed to ensure 'refresh_tokens' table exists:", err);
+  }
+}
+
 module.exports = {
   ensureUsersTableExists,
+  ensureRefreshTokensTableExists,
 };

@@ -1,3 +1,4 @@
+// file: angFrontend/src/app/auth/user-guard.ts
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -8,7 +9,6 @@ export const userGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return authService.checkSession().pipe(
-    // this calls backend /me endpoint
     map((isAuthenticated) => {
       if (isAuthenticated) {
         return true;
