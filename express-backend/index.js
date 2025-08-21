@@ -1,4 +1,4 @@
-//file: index.js
+// file: express-backend/index.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -30,14 +30,12 @@ const PORT = process.env.PORT || 3000;
 
 // --- CORS setup ---
 const corsOptions = {
-  // origin: process.env.FRONTEND_ORIGIN || "http://localhost:4200",
-  origin: true, //temporary fix for postman testing, remove it later
+  origin: true,
   credentials: true,
 };
 app.use(cors(corsOptions));
 
 // --- Core middlewares ---
-// app.use(helmet());
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -52,9 +50,9 @@ app.use(
           "'self'",
           process.env.FRONTEND_ORIGIN || "http://localhost:4200",
         ],
-        frameSrc: ["'self'", "https://accounts.google.com"], // needed for Google login popup
-        objectSrc: ["'none'"], // forbid Flash, etc.
-        upgradeInsecureRequests: [], // auto-upgrade http→https in production
+        frameSrc: ["'self'", "https://accounts.google.com"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
       },
     },
   })
@@ -65,15 +63,11 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 // --- CSRF setup ---
-// 1) Always issue CSRF cookie if missing
 app.use(issueCsrfCookie);
 
-// --- Routes ---
-// Auth endpoints do NOT require CSRF (login/register/logout)
+// --- API routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", googleAuthRoutes);
-
-// All other routes enforce CSRF
 app.use(checkOrigin, requireCsrf);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
