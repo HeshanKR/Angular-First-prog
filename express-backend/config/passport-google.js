@@ -1,3 +1,4 @@
+// file: express-backend/config/passport-google.js
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const pool = require("../db/db"); // your db connection

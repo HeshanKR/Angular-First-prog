@@ -41,7 +41,7 @@ function checkOrigin(req, res, next) {
   const origin = req.get("Origin") || req.get("Referer") || "";
   const allowedOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:4200";
 
-  if (!origin) return next(); //temporary fix for postman testing, remove it later
+  //if (!origin) return next(); //temporary fix for postman testing, remove it later
   if (origin && origin.startsWith(allowedOrigin)) {
     return next();
   }

@@ -68,6 +68,7 @@ src/
 ----├── app.spec.ts
 ----|--interceptors/
 ----------|--csrf.interceptors.ts 
+----------|--auth.interceptor.ts
 ----|--auth/
 ----------|--admin-guard.ts
 ----------|--user-guard.ts

@@ -1,4 +1,4 @@
-// file: google-auth.routes.js
+// file: express-backend/routes/google-auth.routes.js
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -24,8 +24,10 @@ router.get(
   (req, res) => {
     const user = req.user;
 
+    console.log("Google OAuth user:", user);
+
     const token = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: user.id, role: user.role, name: user.name, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
@@ -38,7 +40,8 @@ router.get(
     });
 
     // ✅ Redirect to Angular frontend
-    res.redirect("http://localhost:4200/dashboard");
+    // res.redirect("http://localhost:4200/dashboard");
+    res.redirect(`${process.env.FRONTEND_ORIGIN}/oauth-success`);
   }
 );
 
