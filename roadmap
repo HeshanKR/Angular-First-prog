@@ -263,8 +263,8 @@ Mitigation:
 
 1. CSRF protection (critical since JWT in cookies)✅
 2. XSS hardening (block malicious script injection) + CSP ✅
-3. Session hijacking defenses (cookie settings, rotation)
-4. Add refresh token system & abuse protection
+3. Session hijacking defenses (cookie settings, rotation) ✅
+4. Add refresh token system & abuse protection ✅
 5. Privilege escalation prevention (RBAC enforcement)✅
 6. OAuth token forgery protection
 7. MITM prevention (HTTPS, HSTS, secure deployment)
