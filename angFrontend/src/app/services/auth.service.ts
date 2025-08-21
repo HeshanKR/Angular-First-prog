@@ -53,6 +53,7 @@ export class AuthService {
       tap((user: any) => {
         this.user.set(user);
         this.isLoggedIn.set(!!user);
+        return user;
       }),
       catchError(() => {
         this.user.set(null);
@@ -83,6 +84,9 @@ export class AuthService {
       catchError(() => of(false))
     );
   }
+  // checkSession() {
+  //   return this.fetchUser().pipe(map((user) => !!user?.email));
+  // }
 }
 
 // // file: auth.service.ts

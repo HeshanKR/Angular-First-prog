@@ -19,5 +19,6 @@ export const routes: Routes = [
     canActivate: [userGuard],
   },
   { path: 'admin/roles', component: RoleEditor, canActivate: [adminGuard] },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
   // other routes...
 ];

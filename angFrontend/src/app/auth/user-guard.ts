@@ -1,4 +1,25 @@
 // file: angFrontend/src/app/auth/user-guard.ts
+// import { inject } from '@angular/core';
+// import { CanActivateFn, Router } from '@angular/router';
+// import { AuthService } from '../services/auth.service';
+// import { map, catchError, of, tap } from 'rxjs';
+
+// export const userGuard: CanActivateFn = () => {
+//   const authService = inject(AuthService);
+//   const router = inject(Router);
+
+//   return authService.checkSession().pipe(
+//     tap((isAuthenticated) => {
+//       if (!isAuthenticated) router.navigate(['/login'], { replaceUrl: true });
+//     }),
+//     map((isAuthenticated) => isAuthenticated),
+//     catchError(() => {
+//       router.navigate(['/login'], { replaceUrl: true });
+//       return of(false);
+//     })
+//   );
+// };
+
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -13,12 +34,12 @@ export const userGuard: CanActivateFn = () => {
       if (isAuthenticated) {
         return true;
       } else {
-        router.navigate(['/login']);
+        router.navigate(['/login'], { replaceUrl: true });
         return false;
       }
     }),
     catchError(() => {
-      router.navigate(['/login']);
+      router.navigate(['/login'], { replaceUrl: true });
       return of(false);
     })
   );
